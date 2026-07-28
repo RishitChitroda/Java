@@ -1,50 +1,64 @@
-import java.util.Scanner; 
+import java.util.Scanner;
 
-enum Coin{
-    One(1),
-    Two(2),
-    Five(5),
-    Ten(10),
+enum Coin {
+    ONE(1),
+    TWO(2),
+    FIVE(5),
+    TEN(10);
 
     private int value;
 
-    Coin(value){
+    Coin(int value) {
         this.value = value;
     }
 
+    public int getValue() {
+        return value;
+    }
 }
 
-public class VendingMachine{
-    public static void main(String args[]){
+public class VendingMachine {
+
+    public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
 
         int snackCost = 15;
         int total = 0;
-        
-        System.out.println("Snack's Cost is :" + snackCost);
+        int value = 0;
 
-        
-        while (total < snackCost){
-            
-            System.out.println("Enter Coin : One, Two, Five, Ten");
+        System.out.println("Snack Cost = " + snackCost);
 
-            Coin coin = Coin.valueof(sc.next().toUpperCase());
+        while (total < snackCost) {
 
-            int Value = switch(Coin){
-                case One -> 1;
-                case Two -> 2;
-                case Five -> 5;
-                case Ten -> 10;
-            };
+            System.out.print("Enter Coin (ONE, TWO, FIVE, TEN): ");
 
-            total += Value;
+            Coin coin = Coin.valueOf(sc.next().toUpperCase());
 
-            System.out.println("Total Coin Cost :" + total);
+            switch (coin) {
+                case ONE:
+                    value = coin.getValue();
+                    break;
+
+                case TWO:
+                    value = coin.getValue();
+                    break;
+
+                case FIVE:
+                    value = coin.getValue();
+                    break;
+
+                case TEN:
+                    value = coin.getValue();
+                    break;
+            }
+
+            total += value;
+            System.out.println("Total = " + total);
         }
 
         System.out.println("Paid");
-        System.out.println("Change : "+ (total-snackCost));
+        System.out.println("Change = " + (total - snackCost));
 
         sc.close();
     }
